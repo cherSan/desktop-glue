@@ -10,25 +10,26 @@ import {MainLayoutComponent} from "../layouts/main-layout/main-layout.component"
 import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzListModule} from "ng-zorro-antd/list";
-import {JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 @NgModule({
   declarations: [
     LayoutComponent,
   ],
-  imports: [
-    LaunchBarRoutingModule,
-    SizeObserverDirective,
-    MainLayoutComponent,
-    NzIconModule,
-    NzTabsModule,
-    NzPageHeaderModule,
-    NzAvatarModule,
-    NzListModule,
-    NgForOf,
-    JsonPipe,
-    NgIf,
-    ScrollingModule
-  ],
+    imports: [
+        LaunchBarRoutingModule,
+        SizeObserverDirective,
+        MainLayoutComponent,
+        NzIconModule,
+        NzTabsModule,
+        NzPageHeaderModule,
+        NzAvatarModule,
+        NzListModule,
+        NgForOf,
+        JsonPipe,
+        NgIf,
+        ScrollingModule,
+        AsyncPipe
+    ],
 })
 export class LaunchBarModule {}

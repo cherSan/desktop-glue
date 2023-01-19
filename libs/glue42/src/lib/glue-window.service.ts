@@ -1,4 +1,4 @@
-import {Injectable, Input} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Glue42} from "@glue42/desktop";
 import {Glue42Store} from "@glue42/ng";
 
@@ -22,7 +22,6 @@ export class GlueWindowService {
     this.size = this.size - size;
     this.recalculate()
   }
-
   private recalculate() {
     this.resize = this.resize.then(() => {
       return this.glue.displays.getByWindowId(this.glue.windows.my().id)

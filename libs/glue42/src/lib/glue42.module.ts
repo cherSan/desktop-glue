@@ -3,8 +3,8 @@ import {Glue42Ng} from "@glue42/ng";
 import {Glue42NgSettings} from "@glue42/ng/dist/lib/types";
 import GlueDesktop from "@glue42/desktop";
 import {VisibleAreasService} from "./visible-areas.service";
-import {SizeObserverDirective} from "./size-observer.directive";
 import {GlueWindowService} from "./glue-window.service";
+import {GlueLayoutsService} from "./glue-layouts.service";
 
 const settings: Glue42NgSettings = {
   desktop: {
@@ -25,7 +25,8 @@ const settings: Glue42NgSettings = {
   ],
   providers: [
     VisibleAreasService,
-    GlueWindowService
+    GlueWindowService,
+    GlueLayoutsService
   ]
 })
 export class Glue42Module {}

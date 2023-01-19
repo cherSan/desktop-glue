@@ -6,16 +6,16 @@
     <nz-page-header class="layout-header">
       <nz-page-header-subtitle>Launchpad</nz-page-header-subtitle>
       <nz-page-header-extra>
-        <span nz-icon nzType="save" nzTheme="outline" (click)="layoutSave(currentLayout)" *ngIf="currentLayout"></span>
+        <span nz-icon nzType="save" nzTheme="outline" *ngIf="(currentLayout$ | async) as currentLayout" (click)="layoutSave(currentLayout)"></span>
         <span nz-icon nzType="plus" nzTheme="outline" (click)="layoutCreate()"></span>
-        <span nz-icon nzType="edit" nzTheme="outline" *ngIf="currentLayout"></span>
+        <span nz-icon nzType="edit" nzTheme="outline" *ngIf="(currentLayout$ | async)"></span>
       </nz-page-header-extra>
       <nz-avatar nz-page-header-avatar [nzSrc]="'https://avatars0.githubusercontent.com/u/22736418?s=88&v=4'"></nz-avatar>
       <nz-page-header-content>
         <div>Tabs</div>
-        <cdk-virtual-scroll-viewport class="applications" [itemSize]="layouts.length" [style.height.px]="200">
+        <cdk-virtual-scroll-viewport class="applications" [itemSize]="(layouts$ | async)?.length" [style.height.px]="200">
           <nz-list [nzItemLayout]="'horizontal'">
-            <ng-container *cdkVirtualFor="let layout of layouts; index as i">
+            <ng-container *cdkVirtualFor="let layout of (layouts$ | async); index as i">
               <nz-list-item (click)="applyLayout(layout)">
                 <nz-list-item-meta>
                   <nz-list-item-meta-avatar>
@@ -23,7 +23,10 @@
                   </nz-list-item-meta-avatar>
                   <nz-list-item-meta-title>{{layout.name}}</nz-list-item-meta-title>
                 </nz-list-item-meta>
-                <nz-list-item-extra *ngIf="layout.name === currentLayout?.name"><span nz-icon nzType="check" nzTheme="outline"></span></nz-list-item-extra>
+                <nz-list-item-extra>
+                  <span *ngIf="layout.name === (currentLayout$ | async)?.name" nz-icon nzType="check" nzTheme="outline"></span>
+                  <span nz-icon nzType="delete" nzTheme="outline" (click)="remove(layout)"></span>
+                </nz-list-item-extra>
               </nz-list-item>
             </ng-container>
           </nz-list>

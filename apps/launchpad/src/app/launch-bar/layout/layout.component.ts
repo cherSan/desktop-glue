@@ -5,6 +5,7 @@ import {GlueWindowService} from "@launchpad/glue42";
 import {delay, from, Observable, repeat, Subject, switchMap, takeUntil, tap} from "rxjs";
 import {Glue42Store} from "@glue42/ng";
 import {Glue42} from "@glue42/desktop";
+import {GlueLayoutsService} from "../../../../../../libs/glue42/src/lib/glue-layouts.service";
 
 @Component({
   templateUrl: './layout.component.html',
@@ -26,41 +27,20 @@ import {Glue42} from "@glue42/desktop";
 })
 export class LayoutComponent {
   private readonly glue: Glue42.Glue = this.glueStore.getGlue() as Glue42.Glue;
-  private readonly live$ = new Subject<void>();
-
-  private layouts$: Observable<Glue42.Layouts.LayoutSummary[]> = from(this.glue.layouts.ready()).pipe(
-    takeUntil(this.live$),
-    switchMap(() => from(this.glue.layouts.getAll('Global'))),
-    tap((layouts) => this.layouts = layouts || []),
-    delay(2000),
-    repeat()
-  )
-  public layouts: Glue42.Layouts.LayoutSummary[] = [];
-
-  private currentLayout$: Observable<Glue42.Layouts.Layout | undefined> = from(this.glue.layouts.ready()).pipe(
-    takeUntil(this.live$),
-    switchMap(() => from(this.glue.layouts.getCurrentLayout())),
-    tap((layout) => this.currentLayout = layout),
-    delay(2000),
-    repeat()
-  )
-  public currentLayout?: Glue42.Layouts.Layout | undefined = undefined;
+  public layouts$: Observable<Glue42.Layouts.LayoutSummary[]>;
+  public currentLayout$: Observable<Glue42.Layouts.LayoutSummary | undefined>;
   constructor(
     private readonly router: Router,
     public readonly activatedRoute: ActivatedRoute,
     private glueWindow: GlueWindowService,
-    private glueStore: Glue42Store
+    private glueStore: Glue42Store,
+    private glueLayoutsService: GlueLayoutsService
   ) {
     this.glueWindow.add(300);
+    this.layouts$ = glueLayoutsService.layouts$;
+    this.currentLayout$ = glueLayoutsService.currentLayout$;
   }
-  ngOnInit() {
-    this.layouts$.subscribe();
-    this.currentLayout$.subscribe();
-  }
-  ngOnDestroy() {
-    this.live$.next();
-    this.live$.complete();
-  }
+
   toggle($event: Event, routePath: string) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -72,7 +52,7 @@ export class LayoutComponent {
   applyLayout(layout: Glue42.Layouts.LayoutSummary) {
     this.glue.layouts.resume(layout.name);
   }
-  layoutSave(layout: Glue42.Layouts.LayoutSummary | undefined) {
+  layoutSave(layout: Glue42.Layouts.LayoutSummary | undefined | null) {
     if (layout) {
       this.glue.layouts.save(layout)
     }
@@ -89,5 +69,8 @@ export class LayoutComponent {
         console.error('WTF?');
       }
     }
+  }
+  remove(layout: Glue42.Layouts.LayoutSummary) {
+    this.glue.layouts.remove('Global', layout.name)
   }
 }

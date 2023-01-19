@@ -14,7 +14,11 @@ export class AppComponent {
   ) {}
   save(name: string) {
     return this.glue.layouts.save({
-      name
+      name,
+      type: 'Global',
+      metadata: {
+        order: 1
+      }
     }).then(() => {
       return this.glue.layouts.resume(name)
     }).then(() => {
