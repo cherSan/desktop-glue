@@ -1,0 +1,91 @@
+<lp-main-layout
+  [containerSize]="[700, 700]"
+>
+  <div class="container">
+    <div class="applications">
+      <nz-page-header class="layout-header">
+        <nz-page-header-subtitle>Applications</nz-page-header-subtitle>
+        <nz-page-header-extra>
+          <a><span nz-icon nzType="appstore-add" nzTheme="outline"></span> Add</a>
+        </nz-page-header-extra>
+        <nz-avatar nz-page-header-avatar [nzIcon]="'appstore'"></nz-avatar>
+        <nz-page-header-content>
+          <input
+            nz-input
+            type="text"
+            [nzSize]="'small'"
+            [ngModel]="filter$.getValue()"
+            (ngModelChange)="filter$.next($event)"
+          >
+        </nz-page-header-content>
+      </nz-page-header>
+      <cdk-virtual-scroll-viewport class="applications" [itemSize]="applicationsWithCategories.length">
+        <nz-list [nzItemLayout]="'vertical'">
+          <ng-container *cdkVirtualFor="let application of applicationsWithCategories">
+            <nz-list-item *ngIf="application.type !== 'category'; else categoryTpl" (click)="application.start()">
+              <nz-list-item-meta>
+                <nz-list-item-meta-avatar [nzSrc]="application.icon || 'default'"></nz-list-item-meta-avatar>
+                <nz-list-item-meta-title>{{application.title}}</nz-list-item-meta-title>
+                <nz-list-item-meta-description>{{application.userProperties['description']}}</nz-list-item-meta-description>
+              </nz-list-item-meta>
+              <ul nz-list-item-actions>
+                <nz-list-item-action>
+                  <span nz-icon nzType="star" nzTheme="outline"></span>
+                </nz-list-item-action>
+                <nz-list-item-action>
+                  <span nz-icon nzType="question" nzTheme="outline"></span>
+                </nz-list-item-action>
+                <nz-list-item-action>
+                  <span nz-icon nzType="copy" nzTheme="outline"></span>
+                </nz-list-item-action>
+                <nz-list-item-action>
+                  <span nz-icon nzType="edit" nzTheme="outline"></span>
+                </nz-list-item-action>
+                <nz-list-item-action>
+                  <span nz-icon nzType="delete" nzTheme="outline"></span>
+                </nz-list-item-action>
+              </ul>
+              <nz-list-item-extra>
+                <div>v{{application.version || '0.0.1'}}</div>
+              </nz-list-item-extra>
+            </nz-list-item>
+            <ng-template #categoryTpl>
+              <nz-list-item class="category">
+                <nz-list-item-meta>
+                  <nz-list-item-meta-description>{{application.title}}</nz-list-item-meta-description>
+                </nz-list-item-meta>
+              </nz-list-item>
+            </ng-template>
+          </ng-container>
+        </nz-list>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <nz-divider [nzType]="'vertical'"></nz-divider>
+    <div class="extra">
+      <nz-page-header class="layout-header">
+        <nz-page-header-subtitle>Current Application</nz-page-header-subtitle>
+        <nz-avatar nz-page-header-avatar [nzIcon]="'thunderbolt'"></nz-avatar>
+        <nz-page-header-content>
+          <cdk-virtual-scroll-viewport class="window" [itemSize]="windows.length">
+            <nz-list [nzItemLayout]="'horizontal'">
+              <ng-container *ngFor="let window of windows">
+                <nz-list-item (click)="window.focus()">
+                  <nz-list-item-meta>
+                    <nz-list-item-meta-title>{{window.title}}</nz-list-item-meta-title>
+                  </nz-list-item-meta>
+                </nz-list-item>
+              </ng-container>
+            </nz-list>
+          </cdk-virtual-scroll-viewport>
+        </nz-page-header-content>
+      </nz-page-header>
+      <nz-page-header class="layout-header">
+        <nz-page-header-subtitle>Favorite</nz-page-header-subtitle>
+        <nz-avatar nz-page-header-avatar [nzIcon]="'star'"></nz-avatar>
+        <nz-page-header-content>
+          FAV APPLICATIONS
+        </nz-page-header-content>
+      </nz-page-header>
+    </div>
+  </div>
+</lp-main-layout>

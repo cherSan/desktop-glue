@@ -1,0 +1,6 @@
+<div *ngIf="(isGlueReady$ | async)?.error; else contentTpl">
+  {{(isGlueReady$ | async)?.error}}
+</div>
+<ng-template #contentTpl>
+  <router-outlet></router-outlet>
+</ng-template>

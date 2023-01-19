@@ -1,0 +1,69 @@
+<lp-main-layout
+  [containerSize]="[56, 300]"
+  [detailsSize]="[0, 700]"
+>
+  <div class="container">
+    <nz-page-header class="layout-header">
+      <nz-page-header-subtitle>Launchpad</nz-page-header-subtitle>
+      <nz-page-header-extra>
+        <span nz-icon nzType="save" nzTheme="outline" (click)="layoutSave(currentLayout)" *ngIf="currentLayout"></span>
+        <span nz-icon nzType="plus" nzTheme="outline" (click)="layoutCreate()"></span>
+        <span nz-icon nzType="edit" nzTheme="outline" *ngIf="currentLayout"></span>
+      </nz-page-header-extra>
+      <nz-avatar nz-page-header-avatar [nzSrc]="'https://avatars0.githubusercontent.com/u/22736418?s=88&v=4'"></nz-avatar>
+      <nz-page-header-content>
+        <div>Tabs</div>
+        <cdk-virtual-scroll-viewport class="applications" [itemSize]="layouts.length" [style.height.px]="200">
+          <nz-list [nzItemLayout]="'horizontal'">
+            <ng-container *cdkVirtualFor="let layout of layouts; index as i">
+              <nz-list-item (click)="applyLayout(layout)">
+                <nz-list-item-meta>
+                  <nz-list-item-meta-avatar>
+                    <span nz-icon nzType="layout" nzTheme="outline"></span>
+                  </nz-list-item-meta-avatar>
+                  <nz-list-item-meta-title>{{layout.name}}</nz-list-item-meta-title>
+                </nz-list-item-meta>
+                <nz-list-item-extra *ngIf="layout.name === currentLayout?.name"><span nz-icon nzType="check" nzTheme="outline"></span></nz-list-item-extra>
+              </nz-list-item>
+            </ng-container>
+          </nz-list>
+        </cdk-virtual-scroll-viewport>
+      </nz-page-header-content>
+    </nz-page-header>
+    <nz-tabset
+      class="layout-tab-elements"
+      [nzLinkRouter]="true"
+      [nzAnimated]="true"
+      [nzTabPosition]="'left'"
+      [nzSize]="'small'"
+      [nzTabBarStyle]="{width: '100%'}"
+    >
+      <nz-tab>
+        <a
+          *nzTabLink
+          nz-tab-link
+          (click)="toggle($event, 'applications')"
+          [routerLink]="['applications']"
+          [relativeTo]="activatedRoute"
+          [replaceUrl]="true"
+        >
+          <span nz-icon nzType="appstore" nzTheme="outline"></span>
+          <span>Applications</span>
+        </a>
+      </nz-tab>
+      <nz-tab>
+        <a
+          *nzTabLink
+          nz-tab-link
+          (click)="toggle($event, 'workspaces')"
+          [routerLink]="['workspaces']"
+          [relativeTo]="activatedRoute"
+          [replaceUrl]="true"
+        >
+          <span nz-icon nzType="layout" nzTheme="outline"></span>
+          <span>Workspaces</span>
+        </a>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</lp-main-layout>

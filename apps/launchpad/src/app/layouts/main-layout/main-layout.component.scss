@@ -1,0 +1,11 @@
+.layout-container {
+  display: grid;
+  grid-template-columns: fit-content(0) fit-content(0);
+  height: 500px;
+}
+.layout-main-panel {
+  height: 100%;
+}
+.layout-main-panel--details {
+  height: 100%;
+}
