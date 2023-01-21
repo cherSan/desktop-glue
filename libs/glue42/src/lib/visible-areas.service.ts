@@ -1,5 +1,5 @@
-import {ElementRef, Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, switchMap, tap} from "rxjs";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, switchMap} from "rxjs";
 import {Glue42Store} from "@glue42/ng";
 import {Glue42} from "@glue42/desktop";
 

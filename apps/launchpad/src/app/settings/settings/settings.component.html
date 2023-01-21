@@ -1,0 +1,27 @@
+<ui-header
+  [avatar]="{icon: 'setting'}"
+  [title]="'Settings'"
+  [back]="['..']"
+></ui-header>
+<div class="form">
+  <nz-descriptions [nzBordered]="true" [nzColumn]="1" [nzSize]="'small'">
+    <nz-descriptions-item [nzTitle]="'User'">{{user}}</nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'Region'">{{region}}</nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'Environment'">{{env}}</nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'Version'">{{version}}</nz-descriptions-item>
+  </nz-descriptions>
+  <form nz-form [formGroup]="from" (ngSubmit)="submitForm()" [nzLayout]="'horizontal'">
+    <nz-form-item>
+      <nz-form-label [nzSm]="20" [nzXs]="24">Bloomberg</nz-form-label>
+      <nz-form-control [nzSm]="4" [nzXs]="24">
+        <nz-switch [formControl]="bloombergBridge"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="20" [nzXs]="24">Window Group Header bar</nz-form-label>
+      <nz-form-control [nzSm]="4" [nzXs]="24">
+        <nz-switch [formControl]="windowGroupHeaderBar"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

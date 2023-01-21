@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@launchpad/glue42": ["libs/glue42/src/index.ts"],
-      "@launchpad/pipes": ["libs/pipes/src/index.ts"]
+      "@launchpad/pipes": ["libs/pipes/src/index.ts"],
+      "@launchpad/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

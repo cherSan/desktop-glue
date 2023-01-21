@@ -1,0 +1,42 @@
+<div class="panel">
+  <ui-header
+    [title]="'Applications'"
+    [avatar]="{icon: 'appstore'}"
+    [back]="['..']"
+  >
+    <nz-segmented extra [nzOptions]="options" (nzValueChange)="handleIndexChange($event)"></nz-segmented>
+    <nz-input-group [nzSize]="'small'" [nzSearch]="true">
+      <input
+        nz-input
+        #input
+        placeholder="Filter Applications"
+        (input)="filter = input.value"
+      />
+    </nz-input-group>
+  </ui-header>
+  <div class="application-list">
+    <ui-panel-element
+      *ngFor="let application of ((applications$ | async) || []) | filter: filter: ['title']"
+      [active]="!!application.instances.length"
+      (click)="onClick(application)"
+      [title]="application.title || application.name"
+      [avatar]="{url: application.icon}"
+      [description]="application.userProperties['category']"
+    >
+      <div>
+        <nz-button-group [nzSize]="'small'">
+          <button
+            nz-button
+            nzType="default"
+            [nzSize]="'small'"
+            [routerLink]="[application.name]"
+            (click)="$event.stopPropagation()"
+          >
+            <span nz-icon nzType="info" nzTheme="outline"></span>
+          </button>
+        </nz-button-group>
+      </div>
+    </ui-panel-element>
+  </div>
+</div>
+<rubber-outlet></rubber-outlet>

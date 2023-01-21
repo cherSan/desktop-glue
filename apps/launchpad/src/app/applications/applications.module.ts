@@ -1,36 +1,39 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ScrollingModule} from "@angular/cdk/scrolling";
-import {SizeObserverDirective} from "@launchpad/glue42";
-import {NzLayoutModule} from "ng-zorro-antd/layout";
-import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
-import {NzListModule} from "ng-zorro-antd/list";
-import {NzAvatarModule} from "ng-zorro-antd/avatar";
 
 import { ApplicationsRoutingModule } from './applications-routing.module';
-import { LayoutComponent } from './layout/layout.component';
-import {MainLayoutComponent} from "../layouts/main-layout/main-layout.component";
-import {NzInputModule} from "ng-zorro-antd/input";
-import {FormsModule} from "@angular/forms";
-import {NzIconModule} from "ng-zorro-antd/icon";
-import {NzDividerModule} from "ng-zorro-antd/divider";
+import { ApplicationsComponent } from './applications/applications.component';
+import { HeaderComponent, PanelElementComponent } from '@launchpad/ui';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { FilterPipe } from '@launchpad/pipes';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { DetailsComponent } from './details/details.component';
+import { RubberOutlet } from '../rubber-outlet/rubber-outlet.component';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
+import { BugReportComponent } from './bug-report/bug-report.component';
+import {NzFormModule} from "ng-zorro-antd/form";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [LayoutComponent],
-    imports: [
-        CommonModule,
-        ApplicationsRoutingModule,
-        SizeObserverDirective,
-        NzLayoutModule,
-        NzPageHeaderModule,
-        NzListModule,
-        MainLayoutComponent,
-        NzAvatarModule,
-        ScrollingModule,
-        NzInputModule,
-        FormsModule,
-        NzIconModule,
-        NzDividerModule
-    ],
+  declarations: [ApplicationsComponent, DetailsComponent, BugReportComponent],
+  imports: [
+    CommonModule,
+    ApplicationsRoutingModule,
+    HeaderComponent,
+    NzInputModule,
+    FilterPipe,
+    PanelElementComponent,
+    NzButtonModule,
+    NzIconModule,
+    RubberOutlet,
+    NzTypographyModule,
+    NzDescriptionsModule,
+    NzSegmentedModule,
+    NzFormModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ApplicationsModule {}

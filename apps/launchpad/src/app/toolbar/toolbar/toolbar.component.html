@@ -1,0 +1,11 @@
+<div
+  pSizeObserver
+  [class]="'animation-panel'"
+  [class.mouse-over]="isMouseOver"
+  [class.route-active]="isRouterActive"
+  [@serviceChange]="weight"
+  (mouseenter)="isMouseOver = true"
+  (mouseleave)="isMouseOver = false"
+>
+  <router-outlet #outlet="outlet" (activate)="activate(outlet)" (deactivate)="deactivate()"></router-outlet>
+</div>

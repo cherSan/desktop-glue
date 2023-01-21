@@ -1,0 +1,15 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px fit-content(0);
+}
+.panel {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: auto 1fr;
+  form {
+    padding-left: 10px;
+    padding-right: 10px
+  }
+}

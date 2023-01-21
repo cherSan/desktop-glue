@@ -1,0 +1,30 @@
+<div class="panel">
+  <ui-header
+    [title]="'Bug report'"
+    [avatar]="{icon: 'bug'}"
+    [description]="(application$ | async)?.userProperties ? (application$ | async)?.userProperties!['category'] : null"
+    [back]="['..']"
+  >
+  </ui-header>
+  <form nz-form [nzLayout]="'vertical'">
+    <nz-form-item>
+      <nz-form-label nzRequired>From</nz-form-label>
+      <nz-form-control nzHasFeedback>
+        <input nz-input [formControl]="from" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired>Description</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Please describe your issue!">
+        <nz-textarea-count [nzMaxCharacterCount]="2000">
+          <textarea [formControl]="description" nz-input rows="2" placeholder="Describe your issue"></textarea>
+        </nz-textarea-count>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzOffset]="12" [nzSpan]="12">
+        <button nz-button [nzType]="'primary'" [nzDanger]="true" [nzBlock]="true" [disabled]="!form.valid">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

@@ -1,0 +1,14 @@
+:host {
+  height: 400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 340px fit-content(0);
+}
+.panel {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: auto 1fr;
+  .application-list {
+    overflow-y: auto;
+  }
+}

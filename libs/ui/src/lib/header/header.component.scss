@@ -1,0 +1,49 @@
+:host {
+  position: relative;
+  display: grid;
+  padding-right: 6px;
+  grid-template-columns: 60px 1fr fit-content(0);
+  grid-template-rows: 48px fit-content(0);
+  grid-template-areas: "logo title extra" "empty footer footer";
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  width: 100%;
+  grid-gap: 4px;
+}
+.logo {
+  grid-area: logo;
+  align-self: center;
+  justify-self: center;
+  display: block;
+
+  .pointer {
+    cursor: pointer;
+  }
+}
+.title {
+  grid-area: title;
+  min-width: 1px;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self: center;display: grid;
+  grid-template-rows: 1fr fit-content(0);
+  h5 {
+    margin-bottom: 0;
+    align-self: center;
+  }
+}
+.extra {
+  grid-area: extra;
+  align-self: end;
+  max-width: 180px;
+  height: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.footer {
+  grid-area: footer;
+}

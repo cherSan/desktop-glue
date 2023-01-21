@@ -1,0 +1,49 @@
+:host {
+  position: relative;
+  display: grid;
+  padding-right: 6px;
+  grid-template-columns: 60px 1fr fit-content(0);
+  grid-template-rows: fit-content(0);
+  grid-template-areas: "logo title extra";
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 100%;
+  grid-gap: 4px;
+  cursor: pointer;
+  transition: .5s;
+  &:hover {
+    background: #333;
+  }
+}
+.logo {
+  grid-area: logo;
+  align-self: center;
+  justify-self: center;
+  display: block;
+
+  .pointer {
+    cursor: pointer;
+  }
+}
+.title {
+  grid-area: title;
+  min-width: 1px;
+  height: 100%;
+  align-self: center;
+  display: grid;
+  grid-template-rows: 1fr fit-content(0);
+  h5 {
+    min-width: 1px;
+    margin-bottom: 0;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.extra {
+  grid-area: extra;
+  align-self: center;
+}

@@ -1,0 +1,54 @@
+<div class="panel">
+  <ui-header
+    [title]="'Tabs'"
+    [avatar]="{icon: 'layout'}"
+    [back]="['..']"
+  >
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixButtonTpl" [nzSize]="'small'">
+      <input type="text" nz-input placeholder="Tab name for creation" #input />
+      <ng-template #suffixButtonTpl>
+        <button nz-button [nzType]="'default'" [nzSize]="'small'" (click)="create(input.value)">
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+        </button>
+      </ng-template>
+    </nz-input-group>
+    <nz-input-group [nzSize]="'small'" [nzSearch]="true">
+      <input
+        nz-input
+        #input
+        placeholder="Filter Tabs"
+        (input)="filter = input.value"
+      />
+    </nz-input-group>
+  </ui-header>
+  <div
+    class="tabs-list"
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="custom-placeholder" *cdkDragPlaceholder></div>
+    <ui-panel-element
+      *ngFor="let layout of ((layouts$ | async) || []) | filter: filter: ['name']"
+      cdkDrag
+      [active]="(layout.name === (currentLayout$ | async)?.name)"
+      (click)="onClick(layout)"
+      [title]="layout?.name || ''"
+      [avatar]="{icon: 'layout'}"
+    >
+      <div>
+        <nz-button-group [nzSize]="'small'">
+          <button
+            nz-button
+            nzType="default"
+            [nzSize]="'small'"
+            [routerLink]="[layout.name]"
+            (click)="$event.stopPropagation()"
+          >
+            <span nz-icon nzType="info" nzTheme="outline"></span>
+          </button>
+        </nz-button-group>
+      </div>
+    </ui-panel-element>
+  </div>
+</div>
+<rubber-outlet></rubber-outlet>

@@ -6,9 +6,7 @@ import {VisibleAreasService} from "./visible-areas.service";
   selector: '[pSizeObserver]',
 })
 export class SizeObserverDirective implements OnInit, OnDestroy {
-
   private readonly id: string;
-
   private readonly resizeObserver = new ResizeObserver((entries) => {
     if (entries[0]) {
       this.visibleAreas.setParams(this.id, {
@@ -23,13 +21,11 @@ export class SizeObserverDirective implements OnInit, OnDestroy {
     private readonly el: ElementRef,
     private readonly visibleAreas: VisibleAreasService
   ) {
-    this.id = `${Date.now()}`
+    this.id = `visible-area_${Date.now()}`
   }
-
   ngOnInit() {
     this.resizeObserver.observe(this.el.nativeElement);
   }
-
   ngOnDestroy() {
     this.resizeObserver.unobserve(this.el.nativeElement);
     this.resizeObserver.disconnect();

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {Glue42Ng} from "@glue42/ng";
 import {Glue42NgSettings} from "@glue42/ng/dist/lib/types";
-import GlueDesktop from "@glue42/desktop";
+import GlueDesktop, {Glue42} from "@glue42/desktop";
 import {VisibleAreasService} from "./visible-areas.service";
-import {GlueWindowService} from "./glue-window.service";
-import {GlueLayoutsService} from "./glue-layouts.service";
+import {Observable} from "rxjs";
+import {GlueService} from "./glue.service";
 
 const settings: Glue42NgSettings = {
   desktop: {
@@ -18,15 +18,27 @@ const settings: Glue42NgSettings = {
     }
   }
 }
-
+function initializeGlue(glueService: GlueService): () => Observable<Glue42.Windows.GDWindow> {
+  return () => glueService.initialize();
+}
 @NgModule({
   imports: [
     Glue42Ng.forRoot(settings),
   ],
   providers: [
+    GlueService,
     VisibleAreasService,
-    GlueWindowService,
-    GlueLayoutsService
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeGlue,
+      deps: [GlueService],
+      multi: true
+    },
+    {
+      provide: Window,
+      useValue: window,
+      multi: true
+    }
   ]
 })
 export class Glue42Module {}

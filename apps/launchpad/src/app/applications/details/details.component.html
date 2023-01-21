@@ -1,0 +1,57 @@
+<div class="panel">
+  <ui-header
+    [title]="(application$ | async)?.title || (application$ | async)?.name"
+    [avatar]="{url: (application$ | async)?.icon}"
+    [description]="(application$ | async)?.userProperties ? (application$ | async)?.userProperties!['category'] : null"
+    [back]="['..']"
+  >
+    <nz-button-group extra [nzSize]="'small'">
+      <button nz-button [nzType]="'default'">
+        <span nz-icon nzType="edit" nzTheme="outline"></span>
+      </button>
+      <button nz-button [nzType]="'default'">
+        <span nz-icon nzType="copy" nzTheme="outline"></span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzDanger]="true">
+        <span nz-icon nzType="delete" nzTheme="outline"></span>
+      </button>
+    </nz-button-group>
+    <span nz-typography [nzType]="'secondary'">
+      {{(application$ | async)?.userProperties ? (application$ | async)?.userProperties!['description'] : null}}
+    </span>
+  </ui-header>
+  <div [class]="'info'" *ngIf="application$ | async as application">
+    <div [class]="'actions'">
+      <nz-button-group [nzSize]="'large'" >
+        <button nz-button [nzType]="'default'" [nzDanger]="true" [routerLink]="['bug']">
+          <span nz-icon nzType="bug" nzTheme="outline"></span> Bug Report
+        </button>
+        <button *ngIf="!(isFavorite$ | async)" nz-button [nzType]="'default'" (click)="addToFavorite(application.name)">
+          <span nz-icon nzType="star" nzTheme="outline"></span> Add to Favorite
+        </button>
+        <button *ngIf="isFavorite$ | async" nz-button [nzType]="'default'" (click)="removeFromFavorite(application.name)">
+          <span nz-icon nzType="star" nzTheme="fill"></span> Remove from Favorite
+        </button>
+      </nz-button-group>
+    </div>
+    <nz-descriptions
+      [nzBordered]="true"
+      [nzSize]="'small'"
+      [nzColumn]="1"
+    >
+      <nz-descriptions-item [nzTitle]="'Type'">
+        {{(application$| async)?.type | titlecase}}
+      </nz-descriptions-item>
+      <nz-descriptions-item [nzTitle]="'Version'">
+        {{(application$| async)?.version || 'N/A'}}
+      </nz-descriptions-item>
+      <nz-descriptions-item [nzTitle]="'Owner'">
+        {{(application$| async)?.userProperties!['owner'] || 'N/A'}}
+      </nz-descriptions-item>
+      <nz-descriptions-item [nzTitle]="'Access List'">
+        {{(application$| async)?.userProperties!['accessList'] || 'N/A'}}
+      </nz-descriptions-item>
+    </nz-descriptions>
+  </div>
+</div>
+<rubber-outlet></rubber-outlet>
