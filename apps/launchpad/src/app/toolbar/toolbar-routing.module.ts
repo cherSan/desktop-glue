@@ -44,6 +44,13 @@ const routes: Routes = [
         data: {
           weight: 1
         }
+      },
+      {
+        path: 'exit',
+        loadComponent: () => import('../quit/quit.component').then(c => c.QuitComponent),
+        data: {
+          weight: 1
+        }
       }
     ]
   }

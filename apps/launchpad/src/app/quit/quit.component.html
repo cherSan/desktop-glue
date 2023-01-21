@@ -1,2 +1,10 @@
 <lp-container-template>
+  <ui-header
+    [title]="'Exit'"
+    [avatar]="{icon: 'logout'}"
+    [back]="['..']"
+  ></ui-header>
+  <div class="controls">
+    <button nz-button [nzSize]="'large'" nzBlock (click)="exit()">EXIT</button>
+  </div>
 </lp-container-template>

@@ -25,6 +25,20 @@ export class SizeObserverDirective implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.resizeObserver.observe(this.el.nativeElement);
+    console.log(300,
+      {
+        top: parseInt(`${this.el.nativeElement.offsetTop}`),
+        left: parseInt(`${this.el.nativeElement.offsetLeft}`),
+        width: parseInt(`${this.el.nativeElement.offsetWidth}`),
+        height: parseInt(`${this.el.nativeElement.offsetHeight}`)
+      }
+      )
+    this.visibleAreas.setParams(this.id, {
+      top: parseInt(`${this.el.nativeElement.offsetTop}`),
+      left: parseInt(`${this.el.nativeElement.offsetLeft}`),
+      width: parseInt(`${this.el.nativeElement.offsetWidth}`),
+      height: parseInt(`${this.el.nativeElement.offsetHeight}`)
+    })
   }
   ngOnDestroy() {
     this.resizeObserver.unobserve(this.el.nativeElement);

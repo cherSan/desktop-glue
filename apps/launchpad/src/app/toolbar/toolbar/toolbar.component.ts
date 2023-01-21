@@ -46,11 +46,11 @@ import {Subject, takeUntil, tap} from "rxjs";
       state('true', style({ 'min-width': '340px', width: 'fit-content' })),
       state('false', style({ width: '60px' })),
       transition('0 => 1', [
-        style({width: '60px'}),
+        style({width: '60px', 'min-width': 'unset'}),
         animate(200, style({ width: '340px' }))
       ]),
       transition('1 => 0', [
-        style({width: '340px'}),
+        style({width: '340px', 'min-width': 'unset'}),
         animate(200, style({ width: '60px' }))
       ])
     ])
@@ -65,14 +65,23 @@ export class ToolbarComponent implements OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    const currentRoute = activatedRoute.snapshot.pathFromRoot.map(v => v.url).join('/');
-    const nested = (activatedRoute.routeConfig?.children || []).map(r => `${currentRoute}${r.path}`);
     router.events
       .pipe(
         takeUntil(this.live$),
         tap((event) => {
           if (event instanceof NavigationEnd) {
-            this.isRouterActive = !nested.includes(event.url) && !nested.includes(event.url + '/');
+            console.log(this.activatedRoute.children);
+            const childModulePrimary = this.activatedRoute.children.find(route => route.outlet === 'primary');
+            if (!childModulePrimary) {
+              this.isRouterActive = false;
+            } else {
+              const subChild = childModulePrimary.children.find(route => route.outlet === 'primary');
+              if (!subChild) {
+                this.isRouterActive = false;
+              } else {
+                this.isRouterActive = !!subChild.children.find(route => route.outlet === 'primary');
+              }
+            }
           }
         })
       )
