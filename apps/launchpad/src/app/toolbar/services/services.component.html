@@ -28,12 +28,31 @@
         <span nz-icon nzType="delete" nzTheme="outline"></span>
       </ng-template>
       <nz-card-meta
-        [nzTitle]="(currentLayout$ | async)?.name || ''"
-        [nzAvatar]="avatarTpl"
-        [nzDescription]="'Mock for workspace'"
+        [nzTitle]="titleTpl"
+        [nzDescription]="descriptionTpl"
       >
+        <ng-template #descriptionTpl>
+          <a
+            *ngIf="(currentLayout$ | async)?.name"
+            [routerLink]="['tabs', (currentLayout$ | async)?.name]"
+            [relativeTo]="activatedRoute.parent"
+          >
+            <span nz-icon nzType="layout" nzTheme="outline"></span>
+            {{(currentLayout$ | async)?.name}}
+          </a>
+        </ng-template>
+        <ng-template #titleTpl>
+          <a
+            *ngIf="(currentLayout$ | async)?.name"
+            [routerLink]="['tabs', (currentLayout$ | async)?.name]"
+            [relativeTo]="activatedRoute.parent"
+          >
+            <span nz-icon nzType="cluster" nzTheme="outline"></span>
+            Mock for workspace
+          </a>
+        </ng-template>
         <ng-template #avatarTpl>
-          <span nz-icon nzType="layout" nzTheme="outline"></span>
+
         </ng-template>
       </nz-card-meta>
     </nz-card>

@@ -1,16 +1,5 @@
-:host {
-  height: 400px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 340px fit-content(0);
-}
-.panel {
-  display: grid;
-  overflow: hidden;
-  grid-template-rows: auto 1fr;
-  .tabs-list {
-    overflow-y: auto;
-  }
+.tabs-list {
+  overflow-y: auto;
 }
 .custom-placeholder {
   background: #666;
@@ -19,5 +8,5 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 .new-tab {
-  width: 200px;
+  width: 140px;
 }

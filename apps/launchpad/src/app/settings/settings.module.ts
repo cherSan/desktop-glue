@@ -10,9 +10,10 @@ import {NzSwitchModule} from "ng-zorro-antd/switch";
 import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {ContainerTemplateComponent} from "../container-template/container-template.component";
 
 @NgModule({
   declarations: [SettingsComponent],
-  imports: [CommonModule, SettingsRoutingModule, HeaderComponent, NzFormModule, ReactiveFormsModule, NzSwitchModule, NzDescriptionsModule, NzButtonModule, NzIconModule],
+    imports: [CommonModule, SettingsRoutingModule, HeaderComponent, NzFormModule, ReactiveFormsModule, NzSwitchModule, NzDescriptionsModule, NzButtonModule, NzIconModule, ContainerTemplateComponent],
 })
 export class SettingsModule {}

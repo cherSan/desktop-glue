@@ -1,0 +1,18 @@
+:host {
+  display: grid;
+  width: fit-content;
+  overflow: hidden;
+  height: 420px;
+  grid-template-rows: fit-content(0) 1fr;
+  grid-template-areas: "header router" "content router";
+}
+.header {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+  overflow-y: auto;
+}
+rubber-outlet {
+  grid-area: router;
+}

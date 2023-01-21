@@ -1,0 +1,21 @@
+<lp-container-template>
+  <ui-header
+    [title]="(tab$ | async)?.name"
+    [avatar]="{icon: 'layout'}"
+    [description]="(tab$ | async)?.metadata['createdAt']"
+    [back]="['..']"
+  >
+  </ui-header>
+  <div class="application-list">
+    <ng-container *ngFor="let tabComponent of tabComponents">
+      <ui-panel-element
+        *ngIf="tabComponent.application | async as application"
+        [title]="application.title"
+        [description]=""
+        [avatar]="{url: application.icon}"
+        [routerLink]="['applications', application.name]"
+        [relativeTo]="activatedRoute.parent!.parent!.parent"
+      ></ui-panel-element>
+    </ng-container>
+  </div>
+</lp-container-template>

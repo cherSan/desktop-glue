@@ -68,13 +68,13 @@ export class RubberOutlet {
   constructor(
     private activatedRoute: ActivatedRoute
   ) {
-    const primaryRoute = this.activatedRoute.children.find(o => o.outlet === 'primary');
+    const primaryRoute = this.activatedRoute?.children.find(o => o.outlet === 'primary');
     if (primaryRoute) {
       this.state = {
-        value: primaryRoute.snapshot.component?.name || 'void',
+        value: primaryRoute.snapshot?.component?.name || 'void',
         params: {
           prevWidth: 0,
-          width: primaryRoute.snapshot.data['width']
+          width: primaryRoute.snapshot?.data['width']
         }
       }
     }

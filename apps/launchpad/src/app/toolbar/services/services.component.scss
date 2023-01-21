@@ -1,6 +1,6 @@
 :host {
-  height: 400px;
-  width: 100%;
+  width: fit-content;
+  min-width: 340px;
   display: grid;
   grid-template-columns: 340px fit-content(0);
 }

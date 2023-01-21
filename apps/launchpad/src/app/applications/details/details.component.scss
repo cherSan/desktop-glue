@@ -1,20 +1,9 @@
-:host {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 400px fit-content(0);
+.info {
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.panel {
-  display: grid;
-  overflow: hidden;
-  grid-template-rows: auto 1fr;
-  .info {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .actions {
-    display: flex;
-    justify-content: end;
-    padding-bottom: 6px;
-  }
+.actions {
+  display: flex;
+  justify-content: end;
+  padding-bottom: 6px;
 }

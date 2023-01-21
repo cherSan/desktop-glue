@@ -2,7 +2,8 @@
   position: fixed;
   display: block;
   bottom: 0;
-  height: 400px;
-  width: 60px;
+  height: 420px;
+  width: fit-content;
+  min-width: 60px;
   overflow: hidden;
 }

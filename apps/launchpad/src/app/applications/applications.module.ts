@@ -16,24 +16,26 @@ import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import {NzFormModule} from "ng-zorro-antd/form";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ContainerTemplateComponent} from "../container-template/container-template.component";
 
 @NgModule({
   declarations: [ApplicationsComponent, DetailsComponent, BugReportComponent],
-  imports: [
-    CommonModule,
-    ApplicationsRoutingModule,
-    HeaderComponent,
-    NzInputModule,
-    FilterPipe,
-    PanelElementComponent,
-    NzButtonModule,
-    NzIconModule,
-    RubberOutlet,
-    NzTypographyModule,
-    NzDescriptionsModule,
-    NzSegmentedModule,
-    NzFormModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        ApplicationsRoutingModule,
+        HeaderComponent,
+        NzInputModule,
+        FilterPipe,
+        PanelElementComponent,
+        NzButtonModule,
+        NzIconModule,
+        RubberOutlet,
+        NzTypographyModule,
+        NzDescriptionsModule,
+        NzSegmentedModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        ContainerTemplateComponent,
+    ],
 })
 export class ApplicationsModule {}

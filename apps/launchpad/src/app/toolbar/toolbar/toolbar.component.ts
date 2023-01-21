@@ -12,7 +12,7 @@ import {Subject, takeUntil, tap} from "rxjs";
       transition(
         ':increment',
         [
-          query(':enter, :leave', style({ position: 'absolute', width: '340px', height: '400px' }), { optional: true }),
+          query(':enter, :leave', style({ position: 'absolute', width: '340px' }), { optional: true }),
           group([
             query(':leave', [
               style({ top: 0, opacity: 1 }),
@@ -28,7 +28,7 @@ import {Subject, takeUntil, tap} from "rxjs";
       transition(
         ':decrement',
         [
-          query(':enter, :leave', style({ position: 'absolute', width: '340px', height: '400px' }), { optional: true }),
+          query(':enter, :leave', style({ position: 'absolute', width: '340px' }), { optional: true }),
           group([
             query(':leave', [
               style({ top: 0, opacity: 1 }),

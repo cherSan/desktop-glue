@@ -1,4 +1,4 @@
-<div class="panel">
+<lp-container-template>
   <ui-header
     [title]="(application$ | async)?.title || (application$ | async)?.name"
     [avatar]="{url: (application$ | async)?.icon}"
@@ -53,5 +53,4 @@
       </nz-descriptions-item>
     </nz-descriptions>
   </div>
-</div>
-<rubber-outlet></rubber-outlet>
+</lp-container-template>

@@ -1,17 +1,15 @@
-<div class="panel">
+<lp-container-template>
   <ui-header
-    [title]="'Tabs'"
-    [avatar]="{icon: 'layout'}"
+    [title]="'Mock for workspace'"
+    [description]="'Tabs'"
+    [avatar]="{icon: 'cluster'}"
     [back]="['..']"
   >
-    <nz-input-group class="new-tab" extra nzSearch [nzAddOnAfter]="suffixButtonTpl" [nzSize]="'small'">
-      <input type="text" nz-input placeholder="Tab name for creation" #tabName />
-      <ng-template #suffixButtonTpl>
-        <button nz-button [nzType]="'default'" [nzSize]="'small'" (click)="create(tabName.value)">
-          <span nz-icon nzType="plus" nzTheme="outline"></span>
-        </button>
-      </ng-template>
-    </nz-input-group>
+    <nz-button-group extra [nzSize]="'small'">
+      <button nz-button [nzType]="'default'" [nzSize]="'small'">
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+      </button>
+    </nz-button-group>
     <nz-input-group [nzSize]="'small'" [nzSearch]="true">
       <input
         nz-input
@@ -50,5 +48,4 @@
       </div>
     </ui-panel-element>
   </div>
-</div>
-<rubber-outlet></rubber-outlet>
+</lp-container-template>
