@@ -8,9 +8,11 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
 import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzIconModule} from "ng-zorro-antd/icon";
 
 @NgModule({
   declarations: [SettingsComponent],
-  imports: [CommonModule, SettingsRoutingModule, HeaderComponent, NzFormModule, ReactiveFormsModule, NzSwitchModule, NzDescriptionsModule],
+  imports: [CommonModule, SettingsRoutingModule, HeaderComponent, NzFormModule, ReactiveFormsModule, NzSwitchModule, NzDescriptionsModule, NzButtonModule, NzIconModule],
 })
 export class SettingsModule {}

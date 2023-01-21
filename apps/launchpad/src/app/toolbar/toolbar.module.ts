@@ -11,6 +11,7 @@ import { RubberOutlet } from '../rubber-outlet/rubber-outlet.component';
 import { ServicesComponent } from './services/services.component';
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzCardModule} from "ng-zorro-antd/card";
+import {NzBadgeModule} from "ng-zorro-antd/badge";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NzCardModule} from "ng-zorro-antd/card";
     NzButtonModule,
     NavigationItemComponent,
     NzIconModule,
-    NzCardModule
+    NzCardModule,
+    NzBadgeModule
   ],
 })
 export class ToolbarModule {}

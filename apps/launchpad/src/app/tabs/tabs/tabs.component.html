@@ -4,10 +4,10 @@
     [avatar]="{icon: 'layout'}"
     [back]="['..']"
   >
-    <nz-input-group nzSearch [nzAddOnAfter]="suffixButtonTpl" [nzSize]="'small'">
-      <input type="text" nz-input placeholder="Tab name for creation" #input />
+    <nz-input-group class="new-tab" extra nzSearch [nzAddOnAfter]="suffixButtonTpl" [nzSize]="'small'">
+      <input type="text" nz-input placeholder="Tab name for creation" #tabName />
       <ng-template #suffixButtonTpl>
-        <button nz-button [nzType]="'default'" [nzSize]="'small'" (click)="create(input.value)">
+        <button nz-button [nzType]="'default'" [nzSize]="'small'" (click)="create(tabName.value)">
           <span nz-icon nzType="plus" nzTheme="outline"></span>
         </button>
       </ng-template>
@@ -15,9 +15,9 @@
     <nz-input-group [nzSize]="'small'" [nzSearch]="true">
       <input
         nz-input
-        #input
+        #search
         placeholder="Filter Tabs"
-        (input)="filter = input.value"
+        (input)="filter = search.value"
       />
     </nz-input-group>
   </ui-header>
@@ -28,11 +28,11 @@
   >
     <div class="custom-placeholder" *cdkDragPlaceholder></div>
     <ui-panel-element
-      *ngFor="let layout of ((layouts$ | async) || []) | filter: filter: ['name']"
+      *ngFor="let tab of (((tabs$ | async) || []) | filter: filter: ['name'])"
       cdkDrag
-      [active]="(layout.name === (currentLayout$ | async)?.name)"
-      (click)="onClick(layout)"
-      [title]="layout?.name || ''"
+      [active]="(tab.name === (currentTab$ | async)?.name)"
+      (click)="onClick(tab)"
+      [title]="tab?.name || ''"
       [avatar]="{icon: 'layout'}"
     >
       <div>
@@ -41,7 +41,7 @@
             nz-button
             nzType="default"
             [nzSize]="'small'"
-            [routerLink]="[layout.name]"
+            [routerLink]="[tab.name]"
             (click)="$event.stopPropagation()"
           >
             <span nz-icon nzType="info" nzTheme="outline"></span>

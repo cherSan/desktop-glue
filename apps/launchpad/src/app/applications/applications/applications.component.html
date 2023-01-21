@@ -16,7 +16,7 @@
   </ui-header>
   <div class="application-list">
     <ui-panel-element
-      *ngFor="let application of ((applications$ | async) || []) | filter: filter: ['title']"
+      *ngFor="let application of (((applications$ | async) || []) | filter: filter: ['title'])"
       [active]="!!application.instances.length"
       (click)="onClick(application)"
       [title]="application.title || application.name"

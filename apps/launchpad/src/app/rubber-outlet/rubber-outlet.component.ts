@@ -17,7 +17,6 @@ type State = {
   styleUrls: ['./rubber-outlet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, SizeObserverDirective, NzDividerModule],
-  hostDirectives: [SizeObserverDirective],
   animations: [
     trigger('rubber', [
       state('void', style({width: 0})),

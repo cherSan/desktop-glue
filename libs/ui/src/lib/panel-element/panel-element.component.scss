@@ -44,7 +44,13 @@
 }
 .extra {
   grid-area: extra;
-  align-self: center;
+  align-self: end;
+  width: fit-content;
+  height: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 .footer {
   grid-area: footer;

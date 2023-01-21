@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterOutlet} from "@angular/router";
-import {animate, group, query, style, transition, trigger} from "@angular/animations";
+import {animate, group, query, state, style, transition, trigger} from "@angular/animations";
 import {Subject, takeUntil, tap} from "rxjs";
 
 @Component({
@@ -12,15 +12,15 @@ import {Subject, takeUntil, tap} from "rxjs";
       transition(
         ':increment',
         [
-          query(':enter, :leave', style({ position: 'absolute', width: '100%' }), { optional: true }),
+          query(':enter, :leave', style({ position: 'absolute', width: '340px', height: '400px' }), { optional: true }),
           group([
             query(':leave', [
-              style({ transform: 'translateY(0)', opacity: 1 }),
-              animate(300, style({ transform: 'translateY(-100%)', opacity: 0 })),
+              style({ top: 0, opacity: 1 }),
+              animate(300, style({ top: '-100%', opacity: 0 })),
             ], { optional: true }),
             query(':enter', [
-              style({ transform: 'translateY(100%)', opacity: 0 }),
-              animate(300, style({ transform: 'translateY(0)', opacity: 1 })),
+              style({ top: '100%', opacity: 0 }),
+              animate(300, style({ top: 0, opacity: 1 })),
             ], { optional: true })
           ])
         ]
@@ -28,19 +28,31 @@ import {Subject, takeUntil, tap} from "rxjs";
       transition(
         ':decrement',
         [
-          query(':enter, :leave', style({ position: 'absolute', width: '100%' }), { optional: true }),
+          query(':enter, :leave', style({ position: 'absolute', width: '340px', height: '400px' }), { optional: true }),
           group([
             query(':leave', [
-              style({ transform: 'translateY(0)', opacity: 1 }),
-              animate(300, style({ transform: 'translateY(100%)', opacity: 0 })),
+              style({ top: 0, opacity: 1 }),
+              animate(300, style({ top: '100%', opacity: 0 })),
             ], { optional: true }),
             query(':enter', [
-              style({ transform: 'translateY(-100%)', opacity: 0 }),
-              animate(300, style({ transform: 'translateY(0)', opacity: 1 })),
+              style({ top: '-100%', opacity: 0 }),
+              animate(300, style({ top: 0, opacity: 1 })),
             ], { optional: true })
           ])
         ]
       ),
+    ]),
+    trigger('panelWidth', [
+      state('true', style({ 'min-width': '340px', width: 'fit-content' })),
+      state('false', style({ width: '60px' })),
+      transition('0 => 1', [
+        style({width: '60px'}),
+        animate(200, style({ width: '340px' }))
+      ]),
+      transition('1 => 0', [
+        style({width: '340px'}),
+        animate(200, style({ width: '60px' }))
+      ])
     ])
   ]
 })

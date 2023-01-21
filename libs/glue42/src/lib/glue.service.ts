@@ -13,8 +13,8 @@ export class GlueService {
   get glue(): Glue42.Glue { return this.glueValue }
   private myWindowValue!: Glue42.Windows.GDWindow;
   get myWindow(): Glue42.Windows.GDWindow { return this.myWindowValue }
-  private layoutsValue!: GlueLayouts;
-  get layouts(): GlueLayouts { return this.layoutsValue }
+  private tabsValue!: GlueLayouts;
+  get tabs(): GlueLayouts { return this.tabsValue }
   private applicationsValue!: GlueApplications
   get applications(): GlueApplications { return this.applicationsValue }
   public user?: string;
@@ -45,8 +45,7 @@ export class GlueService {
           this.user = window.glue42gd?.env.windowsUserName;
           this.env = window.glue42gd?.env.env;
           this.region = window.glue42gd?.env.region
-          console.log(window.glue42gd);
-          this.layoutsValue = new GlueLayouts(this.glue);
+          this.tabsValue = new GlueLayouts(this.glue);
           this.applicationsValue = new GlueApplications(this.glue);
         }),
         switchMap(() => {
@@ -58,10 +57,10 @@ export class GlueService {
     return of(this.myWindowValue)
   }
   exit() {
-    firstValueFrom(this.layouts.currentLayout$)
+    firstValueFrom(this.tabsValue.currentLayout$)
       .then(
         (lo) => {
-          if (lo) return this.layouts.api.hibernate(lo?.name);
+          if (lo) return this.tabsValue.api.hibernate(lo?.name);
           return Promise.resolve();
         }
       )

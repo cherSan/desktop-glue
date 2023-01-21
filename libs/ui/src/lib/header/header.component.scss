@@ -39,10 +39,12 @@
 .extra {
   grid-area: extra;
   align-self: end;
-  max-width: 180px;
+  width: fit-content;
   height: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 .footer {
   grid-area: footer;

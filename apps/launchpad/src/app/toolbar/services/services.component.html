@@ -4,18 +4,18 @@
     [avatar]="{text: 'M'}"
   >
     <nz-button-group extra [nzSize]="'small'">
-      <button nz-button nzDanger nzType="default" (click)="feedback()">
-        <span nz-icon nzType="bug" nzTheme="outline"></span>
-      </button>
+      <nz-badge [nzCount]="99" [nzSize]="'small'" [nzStyle]="{'z-index': '1'}">
+        <button nz-button [nzType]="'default'" [routerLink]="['notification']" [routerLinkActive]="'primary'" [relativeTo]="activatedRoute">
+          <span nz-icon nzType="notification" nzTheme="outline"></span>
+        </button>
+      </nz-badge>
       <button nz-button [nzType]="'default'" [routerLink]="['settings']" [routerLinkActive]="'primary'" [relativeTo]="activatedRoute">
         <span nz-icon nzType="setting" nzTheme="outline"></span>
-      </button>
-      <button nz-button nzType="default" (click)="exit()">
-        <span nz-icon nzType="logout" nzTheme="outline"></span>
       </button>
     </nz-button-group>
     <nz-card
       [nzSize]="'small'"
+      [nzBordered]="true"
       [nzActions]="[saveTpl, renameTpl, removeTpl]"
     >
       <ng-template #saveTpl>
@@ -28,9 +28,13 @@
         <span nz-icon nzType="delete" nzTheme="outline"></span>
       </ng-template>
       <nz-card-meta
-        [nzTitle]="'Mock for workspace'"
-        [nzDescription]="(currentLayout$ | async)?.name || ''"
+        [nzTitle]="(currentLayout$ | async)?.name || ''"
+        [nzAvatar]="avatarTpl"
+        [nzDescription]="'Mock for workspace'"
       >
+        <ng-template #avatarTpl>
+          <span nz-icon nzType="layout" nzTheme="outline"></span>
+        </ng-template>
       </nz-card-meta>
     </nz-card>
   </ui-header>
@@ -50,6 +54,12 @@
     [avatar]="{icon: 'layout'}"
     [title]="'Tabs'"
     [routerLink]="['tabs']"
+    [relativeTo]="activatedRoute.parent"
+  ></ui-navigation-item>
+  <ui-navigation-item
+    [avatar]="{icon: 'logout'}"
+    [title]="'Exit'"
+    [routerLink]="['exit']"
     [relativeTo]="activatedRoute.parent"
   ></ui-navigation-item>
 </div>

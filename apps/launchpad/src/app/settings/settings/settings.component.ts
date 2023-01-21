@@ -19,13 +19,16 @@ export class SettingsComponent {
   public region?: string;
   public env?: string;
   public version?: string;
-  constructor(private glue: GlueService) {
-    this.user = glue.user;
-    this.region = glue.region;
-    this.env = glue.env;
-    this.version = glue.glue.version;
+  constructor(private glueService: GlueService) {
+    this.user = glueService.user;
+    this.region = glueService.region;
+    this.env = glueService.env;
+    this.version = glueService.glue.version;
   }
   submitForm() {
 
+  }
+  feedback() {
+    this.glueService.glue.feedback();
   }
 }

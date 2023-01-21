@@ -3,11 +3,11 @@ import { Route } from '@angular/router';
 export const appRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'test',
+    redirectTo: 'toolbar',
     pathMatch: 'full'
   },
   {
-    path: 'test',
+    path: 'toolbar',
     loadChildren: () => import('./toolbar/toolbar.module').then(m => m.ToolbarModule)
   }
 ];

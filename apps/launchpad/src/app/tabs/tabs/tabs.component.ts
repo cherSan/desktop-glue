@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {GlueService} from "@launchpad/glue42";
 import {Glue42} from "@glue42/desktop";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {map, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'lp-tabs',
@@ -12,29 +12,29 @@ import {map, tap} from "rxjs";
 })
 export class TabsComponent {
   filter: string = '';
-  public readonly layouts$
-  public readonly currentLayout$
-  private layouts: Glue42.Layouts.LayoutSummary[] = [];
+  private tabs: Glue42.Layouts.LayoutSummary[] = [];
+  public readonly tabs$: Observable<Glue42.Layouts.LayoutSummary[]>;
+  public readonly currentTab$: Observable<Glue42.Layouts.LayoutSummary | undefined>;
   constructor(
     private glue: GlueService
   ) {
-    this.layouts$ = glue.layouts.layouts$
+    this.tabs$ = glue.tabs.layouts$
       .pipe(
-        tap((layouts) => this.layouts = layouts),
+        tap((layouts) => this.tabs = layouts),
         map(lo => lo.sort((a, b) => (a.metadata.order || 0) - (b.metadata.order || 0)))
       );
-    this.currentLayout$ = glue.layouts.currentLayout$;
+    this.currentTab$ = glue.tabs.currentLayout$;
   }
 
-  onClick(layout: Glue42.Layouts.LayoutSummary) {
-    return this.glue.layouts.select(layout);
+  onClick(tab: Glue42.Layouts.LayoutSummary) {
+    return this.glue.tabs.select(tab);
   }
-  create(layoutName: string) {
-    return this.glue.layouts.create(layoutName);
+  create(tabName: string) {
+    return this.glue.tabs.create(tabName);
   }
 
   drop($event: CdkDragDrop<Glue42.Layouts.LayoutSummary>) {
-    moveItemInArray(this.layouts, $event.previousIndex, $event.currentIndex);
-    return this.glue.layouts.reorder(this.layouts)
+    moveItemInArray(this.tabs, $event.previousIndex, $event.currentIndex);
+    return this.glue.tabs.reorder(this.tabs)
   }
 }

@@ -13,12 +13,9 @@ export class ServicesComponent {
     public readonly activatedRoute: ActivatedRoute,
     private readonly glueService: GlueService
   ) {
-    this.currentLayout$ = glueService.layouts.currentLayout$
+    this.currentLayout$ = glueService.tabs.currentLayout$
   }
   exit() {
     this.glueService.exit();
-  }
-  feedback() {
-    this.glueService.glue.feedback();
   }
 }
