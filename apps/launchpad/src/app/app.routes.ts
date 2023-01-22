@@ -1,12 +1,7 @@
 import { Route } from '@angular/router';
+import {Glue42InitializeGuard} from "../../../../libs/glue42/src/lib/glue42-initialize.guard";
 
 export const appRoutes: Route[] = [
-  {
-    path: '',
-    outlet: 'process',
-    redirectTo: 'initialize',
-    pathMatch: 'full'
-  },
   {
     path: 'initialize',
     outlet: 'process',
@@ -14,6 +9,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'toolbar',
-    loadChildren: () => import('./toolbar/toolbar.module').then(m => m.ToolbarModule)
+    loadChildren: () => import('./toolbar/toolbar.module').then(m => m.ToolbarModule),
+    canActivate: [Glue42InitializeGuard]
   }
 ];
