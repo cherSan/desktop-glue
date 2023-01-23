@@ -5,7 +5,7 @@
     <nz-avatar *ngIf="$any(avatar)?.icon" [nzSize]="40" [nzIcon]="$any(avatar).icon"></nz-avatar>
   </ng-container>
   <ng-template #noAvatarTpl>
-    <nz-avatar [nzSize]="40" [nzText]="title?.substring(0,2)?.toUpperCase()"></nz-avatar>
+    <nz-avatar [nzSize]="40" [nzText]="title.substring(0,2).toUpperCase()"></nz-avatar>
   </ng-template>
 </div>
 <div class="title">

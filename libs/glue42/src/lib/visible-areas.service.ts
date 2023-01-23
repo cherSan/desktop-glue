@@ -41,7 +41,6 @@ export class VisibleAreasService {
   }
   removeParams(key: string) {
     this.areas.delete(key);
-    console.log([...this.areas.values()]);
     this.visibleAreas$.next([...this.areas.values()]);
   }
 }

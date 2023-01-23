@@ -4,6 +4,7 @@ import {Glue42Store} from "@glue42/ng";
 import {catchError, first, firstValueFrom, forkJoin, from, Observable, of, switchMap, tap} from "rxjs";
 import {GlueLayouts} from "./glue-layouts";
 import {GlueApplications} from "./glue-applications";
+import {GlueInterops} from "./glue-interops";
 
 @Injectable({
   providedIn: "root"
@@ -17,6 +18,8 @@ export class GlueService {
   get tabs(): GlueLayouts { return this.tabsValue }
   private applicationsValue!: GlueApplications
   get applications(): GlueApplications { return this.applicationsValue }
+  private interopsValue!: GlueInterops;
+  get interops(): GlueInterops { return this.interopsValue };
   public user?: string;
   public region?: string;
   public env?: string;
@@ -47,6 +50,10 @@ export class GlueService {
           this.region = window.glue42gd?.env.region
           this.tabsValue = new GlueLayouts(this.glue);
           this.applicationsValue = new GlueApplications(this.glue);
+          this.interopsValue = new GlueInterops(this.glue);
+        }),
+        switchMap(() => {
+          return from(this.interopsValue.register());
         }),
         switchMap(() => {
           this.myWindowValue = this.glue.windows.my();

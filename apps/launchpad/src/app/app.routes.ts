@@ -3,6 +3,11 @@ import {Glue42InitializeGuard} from "../../../../libs/glue42/src/lib/glue42-init
 
 export const appRoutes: Route[] = [
   {
+    path: '',
+    redirectTo: 'toolbar',
+    pathMatch: 'full'
+  },
+  {
     path: 'initialize',
     outlet: 'process',
     loadComponent: () => import('./initialize/initialize.component').then(c => c.InitializeComponent)

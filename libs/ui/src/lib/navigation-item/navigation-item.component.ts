@@ -16,7 +16,7 @@ type Avatar = Image | Icon | Text;
   styleUrls: ['./navigation-item.component.scss'],
 })
 export class NavigationItemComponent {
-  @Input() public title!: string;
-  @Input() public description!: string;
+  @Input() public title: string = '';
+  @Input() public description: string = '';
   @Input() public avatar!: Avatar;
 }

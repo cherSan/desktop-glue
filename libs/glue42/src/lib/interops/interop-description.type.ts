@@ -9,9 +9,9 @@ export type HandlerFunction<T> = (
 ) => void
 
 export type CallFunction<T, R> = (
-  args: T,
-  target: Glue42.Interop.InstanceTarget,
-  options: Glue42.Interop.InvokeOptions
+  args?: T,
+  target?: Glue42.Interop.InstanceTarget,
+  options?: Glue42.Interop.InvokeOptions
 ) => Observable<Glue42.Interop.InvocationResult<R>>;
 
 export type InteropDescription<T, R> = {

@@ -70,7 +70,6 @@ export class ToolbarComponent implements OnDestroy {
         takeUntil(this.live$),
         tap((event) => {
           if (event instanceof NavigationEnd) {
-            console.log(this.activatedRoute.children);
             const childModulePrimary = this.activatedRoute.children.find(route => route.outlet === 'primary');
             if (!childModulePrimary) {
               this.isRouterActive = false;

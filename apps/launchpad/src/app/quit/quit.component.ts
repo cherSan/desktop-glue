@@ -18,6 +18,8 @@ export class QuitComponent {
   ) {
   }
   exit() {
-    this.glueService.exit();
+    this.glueService.interops
+      .get('exit')
+      .subscribe();
   }
 }

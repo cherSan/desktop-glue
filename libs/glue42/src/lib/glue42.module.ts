@@ -4,7 +4,6 @@ import {Glue42NgSettings} from "@glue42/ng/dist/lib/types";
 import GlueDesktop from "@glue42/desktop";
 import {VisibleAreasService} from "./visible-areas.service";
 import {GlueService} from "./glue.service";
-import {GlueInteropsService} from "./glue42-interops.service";
 
 const settings: Glue42NgSettings = {
   desktop: {
@@ -24,7 +23,6 @@ const settings: Glue42NgSettings = {
   ],
   providers: [
     GlueService,
-    GlueInteropsService,
     VisibleAreasService,
     {
       provide: Window,
