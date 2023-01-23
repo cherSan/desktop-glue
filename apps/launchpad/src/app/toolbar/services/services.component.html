@@ -43,8 +43,7 @@
         </ng-template>
         <ng-template #titleTpl>
           <a
-            *ngIf="(currentLayout$ | async)?.name"
-            [routerLink]="['tabs', (currentLayout$ | async)?.name]"
+            [routerLink]="['workspaces']"
             [relativeTo]="activatedRoute.parent"
           >
             <span nz-icon nzType="cluster" nzTheme="outline"></span>

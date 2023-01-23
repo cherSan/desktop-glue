@@ -5,6 +5,10 @@
     [back]="['..']"
   >
     <nz-segmented extra [nzOptions]="options" (nzValueChange)="handleIndexChange($event)"></nz-segmented>
+    <a [routerLink]="[{outlets: { process: 'add-application' }}]" [relativeTo]="route.root">
+      <span nz-icon nzType="appstore-add" nzTheme="outline"></span>
+      Create New Application
+    </a>
     <nz-input-group [nzSize]="'small'" [nzSearch]="true">
       <input
         nz-input

@@ -5,17 +5,13 @@
     [avatar]="{icon: 'cluster'}"
     [back]="['..']"
   >
-    <nz-button-group extra [nzSize]="'small'">
-      <button
-        nz-button
-        [nzType]="'default'"
-        [nzSize]="'small'"
+      <a
         [routerLink]="[{outlets: { process: 'create-tab' }}]"
         [relativeTo]="route.root"
       >
-        <span nz-icon nzType="plus" nzTheme="outline"></span>
-      </button>
-    </nz-button-group>
+        <span nz-icon nzType="plus-square" nzTheme="outline"></span>
+        Create New Tab
+      </a>
     <nz-input-group [nzSize]="'small'" [nzSearch]="true">
       <input
         nz-input

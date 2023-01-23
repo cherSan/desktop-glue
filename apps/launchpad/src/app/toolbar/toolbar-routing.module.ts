@@ -46,6 +46,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'workspaces',
+        loadChildren: () => import('../workspaces/workspaces.module').then(m => m.WorkspacesModule),
+        data: {
+          weight: 1
+        }
+      },
+      {
         path: 'exit',
         loadComponent: () => import('../quit/quit.component').then(c => c.QuitComponent),
         data: {

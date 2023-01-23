@@ -1,0 +1,14 @@
+<lp-container-template>
+  <ui-header
+    [title]="'Workspaces'"
+    [avatar]="{icon: 'cluster'}"
+    [description]="'Mock for Workspace'"
+    [back]="['..']"
+  >
+    <nz-segmented extra [nzOptions]="options" (nzValueChange)="handleIndexChange($event)"></nz-segmented>
+    <a [routerLink]="[{outlets: { process: 'add-workspace' }}]" [relativeTo]="route.root">
+      <span nz-icon nzType="plus-square" nzTheme="outline"></span>
+      Create New Workspace
+    </a>
+  </ui-header>
+</lp-container-template>
