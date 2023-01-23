@@ -1,0 +1,6 @@
+<nz-input-group nzSearch [nzSize]="'large'" [nzAddOnAfter]="submitTpl">
+  <input nz-input #input>
+  <ng-template #submitTpl>
+    <button nz-button [nzSize]="'large'" [nzType]="'primary'" (click)="create(input.value)">Create</button>
+  </ng-template>
+</nz-input-group>

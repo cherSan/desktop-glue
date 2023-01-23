@@ -6,7 +6,13 @@
     [back]="['..']"
   >
     <nz-button-group extra [nzSize]="'small'">
-      <button nz-button [nzType]="'default'" [nzSize]="'small'">
+      <button
+        nz-button
+        [nzType]="'default'"
+        [nzSize]="'small'"
+        [routerLink]="[{outlets: { process: 'create-tab' }}]"
+        [relativeTo]="route.root"
+      >
         <span nz-icon nzType="plus" nzTheme="outline"></span>
       </button>
     </nz-button-group>

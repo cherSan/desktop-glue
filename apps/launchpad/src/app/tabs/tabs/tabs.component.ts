@@ -3,6 +3,7 @@ import {GlueService} from "@launchpad/glue42";
 import {Glue42} from "@glue42/desktop";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {map, Observable, tap} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'lp-tabs',
@@ -16,7 +17,8 @@ export class TabsComponent {
   public readonly tabs$: Observable<Glue42.Layouts.LayoutSummary[]>;
   public readonly currentTab$: Observable<Glue42.Layouts.LayoutSummary | undefined>;
   constructor(
-    private glue: GlueService
+    private glue: GlueService,
+    public readonly route: ActivatedRoute
   ) {
     this.tabs$ = glue.tabs.layouts$
       .pipe(
@@ -29,10 +31,6 @@ export class TabsComponent {
   onClick(tab: Glue42.Layouts.LayoutSummary) {
     return this.glue.tabs.select(tab);
   }
-  create(tabName: string) {
-    return this.glue.tabs.create(tabName);
-  }
-
   drop($event: CdkDragDrop<Glue42.Layouts.LayoutSummary>) {
     moveItemInArray(this.tabs, $event.previousIndex, $event.currentIndex);
     return this.glue.tabs.reorder(this.tabs)

@@ -1,0 +1,12 @@
+:host {
+  position: fixed;
+  top: calc(50% - 20px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 40px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -13,6 +13,11 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./initialize/initialize.component').then(c => c.InitializeComponent)
   },
   {
+    path: 'create-tab',
+    outlet: 'process',
+    loadComponent: () => import('./crate-tab/crate-tab.component').then(c => c.CrateTabComponent)
+  },
+  {
     path: 'toolbar',
     loadChildren: () => import('./toolbar/toolbar.module').then(m => m.ToolbarModule),
     canActivate: [Glue42InitializeGuard]
